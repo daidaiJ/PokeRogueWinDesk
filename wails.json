@@ -1,0 +1,13 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "pokerogue",
+  "outputfilename": "pokerogue",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run start:dev",
+  "frontend:dev:serverUrl": "http://localhost:8193",
+  "author": {
+    "name": "pandazhangs",
+    "email": "1966851391@qq.com"
+  }
+}

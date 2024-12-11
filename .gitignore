@@ -1,4 +1,3 @@
 build/bin
-build/windows/installer
 node_modules
 frontend/dist
