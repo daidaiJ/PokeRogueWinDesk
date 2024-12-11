@@ -1,0 +1,3 @@
+[submodule "public/locales"]
+	path = public/locales
+	url = git@github.com:pagefaultgames/pokerogue-locales.git
