@@ -129,35 +129,27 @@ export class TitlePhase extends Phase {
         return true;
       }
     },
-    {
-      label: i18next.t("menu:loadGame"),
-      handler: () => {
-        this.scene.ui.setOverlayMode(Mode.SAVE_SLOT, SaveSlotUiMode.LOAD,
-          (slotId: integer) => {
-            if (slotId === -1) {
-              return this.showOptions();
-            }
-            this.loadSaveSlot(slotId);
-          });
-        return true;
-      }
-    },
-    {
-      label: i18next.t("menu:dailyRun"),
-      handler: () => {
-        this.initDailyRun();
-        return true;
+      {
+        label: i18next.t("menu:loadGame"),
+        handler: () => {
+          this.scene.ui.setOverlayMode(Mode.SAVE_SLOT, SaveSlotUiMode.LOAD,
+            (slotId: integer) => {
+              if (slotId === -1) {
+                return this.showOptions();
+              }
+              this.loadSaveSlot(slotId);
+            });
+          return true;
+        }
       },
-      keepOpen: true
-    },
-    {
-      label: i18next.t("menu:settings"),
-      handler: () => {
-        this.scene.ui.setOverlayMode(Mode.SETTINGS);
-        return true;
-      },
-      keepOpen: true
-    });
+      {
+        label: i18next.t("menu:settings"),
+        handler: () => {
+          this.scene.ui.setOverlayMode(Mode.SETTINGS);
+          return true;
+        },
+        keepOpen: true
+      });
     const config: OptionSelectConfig = {
       options: options,
       noCancel: true,
@@ -221,7 +213,7 @@ export class TitlePhase extends Phase {
 
         const modifiers: Modifier[] = Array(3).fill(null).map(() => modifierTypes.EXP_SHARE().withIdFromFunc(modifierTypes.EXP_SHARE).newModifier())
           .concat(Array(3).fill(null).map(() => modifierTypes.GOLDEN_EXP_CHARM().withIdFromFunc(modifierTypes.GOLDEN_EXP_CHARM).newModifier()))
-          .concat([ modifierTypes.MAP().withIdFromFunc(modifierTypes.MAP).newModifier() ])
+          .concat([modifierTypes.MAP().withIdFromFunc(modifierTypes.MAP).newModifier()])
           .concat(getDailyRunStarterModifiers(party))
           .filter((m) => m !== null);
 
@@ -243,7 +235,9 @@ export class TitlePhase extends Phase {
       };
 
       // If Online, calls seed fetch from db to generate daily run. If Offline, generates a daily run based on current date.
-      if (!Utils.isLocal || Utils.isLocalServerConnected) {
+      if (false) {
+        console.log(!Utils.isLocal)
+        console.log(Utils.isLocalServerConnected)
         fetchDailyRunSeed().then(seed => {
           if (seed) {
             generateDaily(seed);
@@ -257,6 +251,7 @@ export class TitlePhase extends Phase {
         generateDaily(btoa(new Date().toISOString().substring(0, 10)));
       }
     });
+    console.log("init daily run ")
   }
 
   end(): void {
@@ -299,6 +294,9 @@ export class TitlePhase extends Phase {
         this.scene.validateVoucher(vouchers[achv]);
       }
     }
+    console.log("stop here")
+
+
 
     super.end();
   }

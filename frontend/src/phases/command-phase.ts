@@ -58,7 +58,7 @@ export class CommandPhase extends FieldPhase {
 
     // If the Pokemon has applied Commander's effects to its ally, skip this command
     if (this.scene.currentBattle?.double && this.getPokemon().getAlly()?.getTag(BattlerTagType.COMMANDED)?.getSourcePokemon(this.scene) === this.getPokemon()) {
-      this.scene.currentBattle.turnCommands[this.fieldIndex] = { command: Command.FIGHT, move: { move: Moves.NONE, targets: []}, skip: true };
+      this.scene.currentBattle.turnCommands[this.fieldIndex] = { command: Command.FIGHT, move: { move: Moves.NONE, targets: [] }, skip: true };
     }
 
     // Checks if the Pokemon is under the effects of Encore. If so, Encore can end early if the encored move has no more PP.
@@ -76,8 +76,8 @@ export class CommandPhase extends FieldPhase {
     const moveQueue = playerPokemon.getMoveQueue();
 
     while (moveQueue.length && moveQueue[0]
-        && moveQueue[0].move && (!playerPokemon.getMoveset().find(m => m?.moveId === moveQueue[0].move)
-          || !playerPokemon.getMoveset()[playerPokemon.getMoveset().findIndex(m => m?.moveId === moveQueue[0].move)]!.isUsable(playerPokemon, moveQueue[0].ignorePP))) { // TODO: is the bang correct?
+      && moveQueue[0].move && (!playerPokemon.getMoveset().find(m => m?.moveId === moveQueue[0].move)
+        || !playerPokemon.getMoveset()[playerPokemon.getMoveset().findIndex(m => m?.moveId === moveQueue[0].move)]!.isUsable(playerPokemon, moveQueue[0].ignorePP))) { // TODO: is the bang correct?
       moveQueue.shift();
     }
 
@@ -111,13 +111,13 @@ export class CommandPhase extends FieldPhase {
       case Command.FIGHT:
         let useStruggle = false;
         if (cursor === -1 ||
-            playerPokemon.trySelectMove(cursor, args[0] as boolean) ||
-            (useStruggle = cursor > -1 && !playerPokemon.getMoveset().filter(m => m?.isUsable(playerPokemon)).length)) {
+          playerPokemon.trySelectMove(cursor, args[0] as boolean) ||
+          (useStruggle = cursor > -1 && !playerPokemon.getMoveset().filter(m => m?.isUsable(playerPokemon)).length)) {
           const moveId = !useStruggle ? cursor > -1 ? playerPokemon.getMoveset()[cursor]!.moveId : Moves.NONE : Moves.STRUGGLE; // TODO: is the bang correct?
           const turnCommand: TurnCommand = { command: Command.FIGHT, cursor: cursor, move: { move: moveId, targets: [], ignorePP: args[0] }, args: args };
           const moveTargets: MoveTargetSet = args.length < 3 ? getMoveTargets(playerPokemon, moveId) : args[2];
           if (!moveId) {
-            turnCommand.targets = [ this.fieldIndex ];
+            turnCommand.targets = [this.fieldIndex];
           }
           console.log(moveTargets, getPokemonNameWithAffix(playerPokemon));
           if (moveTargets.targets.length > 1 && moveTargets.multiple) {
@@ -138,9 +138,9 @@ export class CommandPhase extends FieldPhase {
 
           // Decides between a Disabled, Not Implemented, or No PP translation message
           const errorMessage =
-          playerPokemon.isMoveRestricted(move.moveId, playerPokemon)
-            ? playerPokemon.getRestrictingTag(move.moveId, playerPokemon)!.selectionDeniedText(playerPokemon, move.moveId)
-            : move.getName().endsWith(" (N)") ? "battle:moveNotImplemented" : "battle:moveNoPP";
+            playerPokemon.isMoveRestricted(move.moveId, playerPokemon)
+              ? playerPokemon.getRestrictingTag(move.moveId, playerPokemon)!.selectionDeniedText(playerPokemon, move.moveId)
+              : move.getName().endsWith(" (N)") ? "battle:moveNotImplemented" : "battle:moveNoPP";
           const moveName = move.getName().replace(" (N)", ""); // Trims off the indicator
 
           this.scene.ui.showText(i18next.t(errorMessage, { moveName: moveName }), null, () => {
@@ -151,7 +151,7 @@ export class CommandPhase extends FieldPhase {
         break;
       case Command.BALL:
         const notInDex = (this.scene.getEnemyField().filter(p => p.isActive(true)).some(p => !p.scene.gameData.dexData[p.species.speciesId].caughtAttr) && this.scene.gameData.getStarterCount(d => !!d.caughtAttr) < Object.keys(speciesStarterCosts).length - 1);
-        if (this.scene.arena.biomeType === Biome.END && (!this.scene.gameMode.isClassic || this.scene.gameMode.isFreshStartChallenge() || notInDex )) {
+        if (this.scene.arena.biomeType === Biome.END && (!this.scene.gameMode.isClassic || this.scene.gameMode.isFreshStartChallenge() || notInDex)) {
           this.scene.ui.setMode(Mode.COMMAND, this.fieldIndex);
           this.scene.ui.setMode(Mode.MESSAGE);
           this.scene.ui.showText(i18next.t("battle:noPokeballForce"), null, () => {
@@ -229,7 +229,7 @@ export class CommandPhase extends FieldPhase {
               : { command: Command.RUN };
             success = true;
             if (!isSwitch && this.fieldIndex) {
-            currentBattle.turnCommands[this.fieldIndex - 1]!.skip = true;
+              currentBattle.turnCommands[this.fieldIndex - 1]!.skip = true;
             }
           } else if (trappedAbMessages.length > 0) {
             if (!isSwitch) {

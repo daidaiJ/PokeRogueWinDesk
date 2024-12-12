@@ -11,6 +11,7 @@ export class Phase {
     if (this.scene.abilityBar.shown) {
       this.scene.abilityBar.resetAutoHideTimer();
     }
+
   }
 
   end() {

@@ -9,5 +9,12 @@
   "author": {
     "name": "pandazhangs",
     "email": "1966851391@qq.com"
+  },
+  "Info": {
+    "companyName": "ForFunnyDemo",
+    "productName": "Wails Vite",
+    "productVersion": "1.0.0",
+    "copyright": "Copyright©2024PandaZhangs",
+    "comments": "Built using Wails (https://wails.io)"
   }
 }

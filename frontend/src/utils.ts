@@ -134,7 +134,7 @@ export function randSeedShuffle<T>(items: T[]): T[] {
   const newArray = items.slice(0);
   for (let i = items.length - 1; i > 0; i--) {
     const j = Phaser.Math.RND.integerInRange(0, i);
-    [ newArray[i], newArray[j] ] = [ newArray[j], newArray[i] ];
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
   return newArray;
 }
@@ -210,7 +210,7 @@ export function formatLargeNumber(count: integer, threshold: integer): string {
 }
 
 // Abbreviations from 10^0 to 10^33
-const AbbreviationsLargeNumber: string[] = [ "", "K", "M", "B", "t", "q", "Q", "s", "S", "o", "n", "d" ];
+const AbbreviationsLargeNumber: string[] = ["", "K", "M", "B", "t", "q", "Q", "s", "S", "o", "n", "d"];
 
 export function formatFancyLargeNumber(number: number, rounded: number = 3): string {
   let exponent: number;
@@ -256,7 +256,7 @@ export const sessionIdKey = "pokerogue_sessionId";
 // Check if the current hostname is 'localhost' or an IP address, and ensure a port is specified
 export const isLocal = (
   (window.location.hostname === "localhost" ||
-   /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/.test(window.location.hostname)) &&
+    /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/.test(window.location.hostname)) &&
   window.location.port !== "") || window.location.hostname === "";
 
 /**
@@ -271,7 +271,7 @@ export const localServerUrl = import.meta.env.VITE_SERVER_URL ?? `http://${windo
  */
 export const apiUrl = localServerUrl ?? "https://api.pokerogue.net";
 // used to disable api calls when isLocal is true and a server is not found
-export let isLocalServerConnected = true;
+export let isLocalServerConnected = false;
 
 export const isBeta = import.meta.env.MODE === "beta"; // this checks to see if the env mode is development. Technically this gives the same value for beta AND for dev envs
 
@@ -324,7 +324,7 @@ export async function localPing() {
 }
 
 /** Alias for the constructor of a class */
-export type Constructor<T> = new(...args: unknown[]) => T;
+export type Constructor<T> = new (...args: unknown[]) => T;
 
 export class BooleanHolder {
   public value: boolean;
@@ -386,7 +386,7 @@ export function rgbToHsv(r: integer, g: integer, b: integer) {
   const v = Math.max(r, g, b);
   const c = v - Math.min(r, g, b);
   const h = c && ((v === r) ? (g - b) / c : ((v === g) ? 2 + (b - r) / c : 4 + (r - g) / c));
-  return [ 60 * (h < 0 ? h + 6 : h), v && c / v, v ];
+  return [60 * (h < 0 ? h + 6 : h), v && c / v, v];
 }
 
 /**
@@ -395,8 +395,8 @@ export function rgbToHsv(r: integer, g: integer, b: integer) {
  * @param {Array} rgb2 Second RGB color in array
  */
 export function deltaRgb(rgb1: integer[], rgb2: integer[]): integer {
-  const [ r1, g1, b1 ] = rgb1;
-  const [ r2, g2, b2 ] = rgb2;
+  const [r1, g1, b1] = rgb1;
+  const [r2, g2, b2] = rgb2;
   const drp2 = Math.pow(r1 - r2, 2);
   const dgp2 = Math.pow(g1 - g2, 2);
   const dbp2 = Math.pow(b1 - b2, 2);
@@ -406,7 +406,7 @@ export function deltaRgb(rgb1: integer[], rgb2: integer[]): integer {
 }
 
 export function rgbHexToRgba(hex: string) {
-  const color = hex.match(/^([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i) ?? [ "000000", "00", "00", "00" ];
+  const color = hex.match(/^([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i) ?? ["000000", "00", "00", "00"];
   return {
     r: parseInt(color[1], 16),
     g: parseInt(color[2], 16),

@@ -1562,9 +1562,9 @@ export const modifierTypes = {
 
   MINI_BLACK_HOLE: () => new TurnHeldItemTransferModifierType("modifierType:ModifierType.MINI_BLACK_HOLE", "mini_black_hole"),
 
-  VOUCHER: () => new AddVoucherModifierType(VoucherType.REGULAR, 1),
-  VOUCHER_PLUS: () => new AddVoucherModifierType(VoucherType.PLUS, 1),
-  VOUCHER_PREMIUM: () => new AddVoucherModifierType(VoucherType.PREMIUM, 1),
+  VOUCHER: () => new AddVoucherModifierType(VoucherType.REGULAR, 10),
+  VOUCHER_PLUS: () => new AddVoucherModifierType(VoucherType.PLUS, 10),
+  VOUCHER_PREMIUM: () => new AddVoucherModifierType(VoucherType.PREMIUM, 10),
 
   GOLDEN_POKEBALL: () => new ModifierType("modifierType:ModifierType.GOLDEN_POKEBALL", "pb_gold", (type, _args) => new ExtraModifierModifier(type), undefined, "se/pb_bounce_1"),
   SILVER_POKEBALL: () => new ModifierType("modifierType:ModifierType.SILVER_POKEBALL", "pb_silver", (type, _args) => new TempExtraModifierModifier(type, 100), undefined, "se/pb_bounce_1"),

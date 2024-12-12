@@ -89,8 +89,8 @@ const startGame = async (manifest?: any) => {
       createContainer: true
     },
     pixelArt: true,
-    pipeline: [ InvertPostFX ] as unknown as Phaser.Types.Core.PipelineConfig,
-    scene: [ LoadingScene, BattleScene ],
+    pipeline: [InvertPostFX] as unknown as Phaser.Types.Core.PipelineConfig,
+    scene: [LoadingScene, BattleScene],
     version: version
   });
   game.sound.pauseOnBlur = false;
@@ -99,13 +99,8 @@ const startGame = async (manifest?: any) => {
   }
 };
 
-fetch("/manifest.json")
-  .then(res => res.json())
-  .then(jsonResponse => {
-    startGame(jsonResponse.manifest);
-  }).catch(() => {
-    // Manifest not found (likely local build)
-    startGame();
-  });
+
+// Manifest not found (likely local build)
+startGame();
 
 export default game;
