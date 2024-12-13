@@ -439,7 +439,7 @@ export const starterPassiveAbilities = {
   [Species.ALOLA_GRIMER]: Abilities.TOXIC_DEBRIS,
 
   [Species.GROOKEY]: Abilities.GRASS_PELT,
-  [Species.SCORBUNNY]: Abilities.NO_GUARD,
+  [Species.SCORBUNNY]: Abilities.ADAPTABILITY,
   [Species.SOBBLE]: Abilities.SUPER_LUCK,
   [Species.SKWOVET]: Abilities.HARVEST,
   [Species.ROOKIDEE]: Abilities.IRON_BARBS,

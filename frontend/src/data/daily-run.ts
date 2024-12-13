@@ -23,7 +23,6 @@ export function fetchDailyRunSeed(): Promise<string | null> {
 
 export function getDailyRunStarters(scene: BattleScene, seed: string): Starter[] {
   const starters: Starter[] = [];
-
   scene.executeWithSeedOffset(() => {
     const startingLevel = scene.gameMode.getStartingLevel();
 

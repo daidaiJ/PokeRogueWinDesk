@@ -18,8 +18,8 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:  "pokerogue",
-		Width:  1024,
-		Height: 768,
+		Width:  800,
+		Height: 600,
 		Frameless:          false,
 		AssetServer: &assetserver.Options{
 			Assets: assets,

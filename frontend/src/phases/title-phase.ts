@@ -143,6 +143,14 @@ export class TitlePhase extends Phase {
         }
       },
       {
+        label: i18next.t("menu:dailyRun"),
+        handler: () => {
+          this.initDailyRun();
+          return true;
+        },
+        keepOpen: true
+      },
+      {
         label: i18next.t("menu:settings"),
         handler: () => {
           this.scene.ui.setOverlayMode(Mode.SETTINGS);
@@ -194,7 +202,7 @@ export class TitlePhase extends Phase {
 
         const starters = getDailyRunStarters(this.scene, seed);
         const startingLevel = this.scene.gameMode.getStartingLevel();
-
+        console.log("generate daily 1")
         const party = this.scene.getPlayerParty();
         const loadPokemonAssets: Promise<void>[] = [];
         for (const starter of starters) {
@@ -208,7 +216,7 @@ export class TitlePhase extends Phase {
           party.push(starterPokemon);
           loadPokemonAssets.push(starterPokemon.loadAssets());
         }
-
+        console.log("generate daily 2")
         regenerateModifierPoolThresholds(party, ModifierPoolType.DAILY_STARTER);
 
         const modifiers: Modifier[] = Array(3).fill(null).map(() => modifierTypes.EXP_SHARE().withIdFromFunc(modifierTypes.EXP_SHARE).newModifier())
@@ -216,12 +224,12 @@ export class TitlePhase extends Phase {
           .concat([modifierTypes.MAP().withIdFromFunc(modifierTypes.MAP).newModifier()])
           .concat(getDailyRunStarterModifiers(party))
           .filter((m) => m !== null);
-
+        console.log("generate daily 3")
         for (const m of modifiers) {
           this.scene.addModifier(m, true, false, false, true);
         }
         this.scene.updateModifiers(true, true);
-
+        console.log("generate daily 4")
         Promise.all(loadPokemonAssets).then(() => {
           this.scene.time.delayedCall(500, () => this.scene.playBgm());
           this.scene.gameData.gameStats.dailyRunSessionsPlayed++;
@@ -230,6 +238,7 @@ export class TitlePhase extends Phase {
           this.scene.arena.init();
           this.scene.sessionPlayTime = 0;
           this.scene.lastSavePlayTime = 0;
+          console.log("generate daily 5")
           this.end();
         });
       };
