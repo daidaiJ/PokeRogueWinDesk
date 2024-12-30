@@ -25,6 +25,6 @@ This repository is a desktop version of PokeRogue's modified encapsulation, main
 这个仓库是PokeRogue 的数值修改后封装的桌面软件，主要是移除了登录和注册页面，对战中10 倍金钱获取，道馆训练家掉落Voucher 卡券，减少宝可梦被动解锁的糖果花费，经典对战模式幸运值固定14，好运连连啊！并为炎兔儿替换了被动，换成适应力，强劲强劲！
 ## release version
 
-The executable file on the release of the repository, with the CV suffix, can theoretically be compatible with the older Windows system, embedded webview2.
+The executable file on the release of the repository, with the CV suffix, can theoretically be compatible with the older Windows system, embedded webview2. That is android version pokerogue Which With the apk suffix.
 
-仓库的release 上的执行文件，带cv 后缀的理论上可以兼容比较老的windows 系统，内嵌 webview2.不带会自动下载webview2 适合新系统，附带的png 图片属ai 生成。
+仓库的release 上的执行文件，带cv 后缀的理论上可以兼容比较老的windows 系统，内嵌 webview2.不带会自动下载webview2 适合新系统，附带的png 图片属ai 生成，带apk 后缀的是最近构建的安卓版本，安装包大小比较大但是性能还算是可以。
